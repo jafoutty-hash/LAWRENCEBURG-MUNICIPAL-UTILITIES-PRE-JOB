@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lawrenceburg Municipal Utilities — Pre-Job Briefing</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f4f6f9;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #003366;
+      color: #fff;
+      padding: 24px 32px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    header .logo-circle {
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      background: #f5a623;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px; font-weight: 900; color: #003366;
+      flex-shrink: 0;
+    }
+    header h1 { font-size: 1.5rem; font-weight: 700; }
+    header p  { font-size: 0.9rem; opacity: 0.85; margin-top: 2px; }
+
+    .container { max-width: 960px; margin: 32px auto; padding: 0 16px 48px; }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .meta-card {
+      background: #fff;
+      border: 1px solid #d9dfe6;
+      border-radius: 8px;
+      padding: 14px 18px;
+    }
+    .meta-card label {
+      display: block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: #666;
+      margin-bottom: 4px;
+    }
+    .meta-card .value {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #003366;
+    }
+    .meta-card input[type="text"],
+    .meta-card input[type="date"],
+    .meta-card input[type="time"] {
+      width: 100%;
+      border: 1px solid #c0c8d4;
+      border-radius: 4px;
+      padding: 5px 8px;
+      font-size: 0.95rem;
+      color: #222;
+    }
+
+    section {
+      background: #fff;
+      border: 1px solid #d9dfe6;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+    section h2 {
+      background: #003366;
+      color: #fff;
+      padding: 10px 18px;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    section .body { padding: 16px 18px; }
+
+    /* Checklist */
+    .checklist { list-style: none; }
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 7px 0;
+      border-bottom: 1px solid #eef0f3;
+      font-size: 0.93rem;
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .checklist input[type="checkbox"] {
+      margin-top: 3px;
+      width: 16px; height: 16px;
+      accent-color: #003366;
+      flex-shrink: 0;
+    }
+
+    /* Hazard table */
+    .hazard-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    .hazard-table th {
+      background: #e8ecf1;
+      text-align: left;
+      padding: 8px 10px;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: #444;
+    }
+    .hazard-table td { padding: 8px 10px; border-bottom: 1px solid #eef0f3; vertical-align: top; }
+    .hazard-table tr:last-child td { border-bottom: none; }
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+    .badge-high   { background: #ffe0e0; color: #c00; }
+    .badge-med    { background: #fff3cd; color: #856404; }
+    .badge-low    { background: #d4edda; color: #155724; }
+
+    /* PPE grid */
+    .ppe-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 10px;
+    }
+    .ppe-item {
+      border: 1px solid #d9dfe6;
+      border-radius: 6px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.88rem;
+    }
+    .ppe-item input[type="checkbox"] { accent-color: #003366; flex-shrink: 0; }
+
+    /* Crew table */
+    .crew-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    .crew-table th {
+      background: #e8ecf1;
+      text-align: left;
+      padding: 8px 10px;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: #444;
+    }
+    .crew-table td { padding: 8px 10px; border-bottom: 1px solid #eef0f3; }
+    .crew-table tr:last-child td { border-bottom: none; }
+    .crew-table td input[type="text"] {
+      width: 100%;
+      border: 1px solid #c0c8d4;
+      border-radius: 4px;
+      padding: 4px 7px;
+      font-size: 0.88rem;
+    }
+
+    textarea.notes {
+      width: 100%;
+      min-height: 80px;
+      border: 1px solid #c0c8d4;
+      border-radius: 4px;
+      padding: 8px;
+      font-size: 0.9rem;
+      resize: vertical;
+    }
+
+    .sign-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .sign-box {
+      border: 1px solid #d9dfe6;
+      border-radius: 6px;
+      padding: 14px;
+    }
+    .sign-box label { font-size: 0.8rem; color: #555; display: block; margin-bottom: 4px; }
+    .sign-box input[type="text"] {
+      width: 100%;
+      border: none;
+      border-bottom: 2px solid #003366;
+      padding: 4px 0;
+      font-size: 0.95rem;
+      outline: none;
+    }
+    .sign-box .date-line { font-size: 0.8rem; color: #888; margin-top: 6px; }
+
+    .print-btn {
+      display: block;
+      margin: 24px auto 0;
+      padding: 12px 36px;
+      background: #003366;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .print-btn:hover { background: #004d99; }
+
+    @media print {
+      body { background: #fff; }
+      .print-btn { display: none; }
+      header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      section h2 { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo-circle">LMU</div>
+  <div>
+    <h1>Lawrenceburg Municipal Utilities</h1>
+    <p>Pre-Job Safety Briefing &amp; Work Order</p>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- Job Info -->
+  <div class="meta-grid">
+    <div class="meta-card">
+      <label>Date</label>
+      <input type="date" id="jobDate" />
+    </div>
+    <div class="meta-card">
+      <label>Job / Work Order #</label>
+      <input type="text" placeholder="e.g. WO-2026-0142" />
+    </div>
+    <div class="meta-card">
+      <label>Location / Address</label>
+      <input type="text" placeholder="Site address or description" />
+    </div>
+    <div class="meta-card">
+      <label>Crew Foreman</label>
+      <input type="text" placeholder="Full name" />
+    </div>
+    <div class="meta-card">
+      <label>Start Time</label>
+      <input type="time" />
+    </div>
+    <div class="meta-card">
+      <label>Estimated Completion</label>
+      <input type="time" />
+    </div>
+  </div>
+
+  <!-- Job Description -->
+  <section>
+    <h2>📋 Scope of Work</h2>
+    <div class="body">
+      <textarea class="notes" placeholder="Describe the work to be performed today…"></textarea>
+    </div>
+  </section>
+
+  <!-- Hazard Identification -->
+  <section>
+    <h2>⚠️ Hazard Identification &amp; Controls</h2>
+    <div class="body">
+      <table class="hazard-table">
+        <thead>
+          <tr>
+            <th>Hazard</th>
+            <th>Risk</th>
+            <th>Control / Mitigation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Energized electrical equipment</td>
+            <td><span class="badge badge-high">HIGH</span></td>
+            <td>LOTO procedures, hot-gloves, rubber blankets, voltage test before contact</td>
+          </tr>
+          <tr>
+            <td>Working in or near traffic</td>
+            <td><span class="badge badge-high">HIGH</span></td>
+            <td>Traffic control plan, cones/signs, hi-vis PPE, spotter assigned</td>
+          </tr>
+          <tr>
+            <td>Excavation / trench collapse</td>
+            <td><span class="badge badge-high">HIGH</span></td>
+            <td>Utility locate (811), slope/shore/shield per OSHA, competent-person inspection</td>
+          </tr>
+          <tr>
+            <td>Overhead power lines</td>
+            <td><span class="badge badge-high">HIGH</span></td>
+            <td>Maintain min. 10 ft clearance, spotter, equipment barriers</td>
+          </tr>
+          <tr>
+            <td>Slips / trips / falls</td>
+            <td><span class="badge badge-med">MED</span></td>
+            <td>Housekeeping, steel-toe boots, wet surface awareness</td>
+          </tr>
+          <tr>
+            <td>Hand / pinch points (tools &amp; equipment)</td>
+            <td><span class="badge badge-med">MED</span></td>
+            <td>Cut-resistant gloves, proper tool use, no bypassing guards</td>
+          </tr>
+          <tr>
+            <td>Heat / sun exposure</td>
+            <td><span class="badge badge-med">MED</span></td>
+            <td>Hydration, shade breaks, buddy system for heat-illness signs</td>
+          </tr>
+          <tr>
+            <td>Confined space (manholes / vaults)</td>
+            <td><span class="badge badge-high">HIGH</span></td>
+            <td>Permit-required CS procedure, gas monitor, attendant, rescue plan</td>
+          </tr>
+          <tr>
+            <td>Chemical / chlorine exposure (water ops)</td>
+            <td><span class="badge badge-med">MED</span></td>
+            <td>SDS review, chemical gloves, eye wash station nearby</td>
+          </tr>
+          <tr>
+            <td>Other (specify)</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td><input type="text" style="width:100%;border:none;border-bottom:1px solid #ccc;" placeholder="Describe control…" /></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- PPE -->
+  <section>
+    <h2>🦺 Required PPE</h2>
+    <div class="body">
+      <div class="ppe-grid">
+        <div class="ppe-item"><input type="checkbox" /><span>Hard Hat (Class E)</span></div>
+        <div class="ppe-item"><input type="checkbox" /><span>Safety Glasses</span></div>
+        <div class="ppe-item"><input type="checkbox" /><span>Face Shield</span></div>
+        <div class="ppe-item"><input type="checkbox" /><span>Hi-Vis Vest / Shirt</span></div>
+        <div class="ppe-item"><input type="checkbox" /><span>Steel-Toe Boots</span></div>
+        <div class="ppe-item"><input type="checkbox" /><span>Work Gloves</span></div>
+        <div class="ppe-item"><input type="checkbox" /><span>Rubber Insulating Gloves</span></div>
+        <div class="ppe-item"><input type="checkbox" /><span>Arc Flash Suit</span></div>
+        <div class="ppe-item"><input type="checkbox" /><span>Hearing Protection</span></div>
+        <div class="ppe-item"><input type="checkbox" /><span>Respiratory Protection</span></div>
+        <div class="ppe-item"><input type="checkbox" /><span>Fall Protection Harness</span></div>
+        <div class="ppe-item"><input type="checkbox" /><span>Chemical-Resistant PPE</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pre-Job Checklist -->
+  <section>
+    <h2>✅ Pre-Job Checklist</h2>
+    <div class="body">
+      <ul class="checklist">
+        <li><input type="checkbox" /><span>Work order / permit reviewed and understood by all crew members</span></li>
+        <li><input type="checkbox" /><span>811 utility locates called &amp; clearance obtained (marks visible on-site)</span></li>
+        <li><input type="checkbox" /><span>LOTO / energy isolation verified if applicable</span></li>
+        <li><input type="checkbox" /><span>Traffic control plan in place (cones, signs, flaggers)</span></li>
+        <li><input type="checkbox" /><span>Confined space entry permit issued if entering vault / manhole</span></li>
+        <li><input type="checkbox" /><span>Gas / atmosphere monitor calibrated and on-site (O₂, LEL, H₂S, CO)</span></li>
+        <li><input type="checkbox" /><span>First aid kit and fire extinguisher in crew vehicle</span></li>
+        <li><input type="checkbox" /><span>Emergency contact numbers posted / known (911, supervisor, dispatch)</span></li>
+        <li><input type="checkbox" /><span>All crew hold required qualifications / licenses for today's tasks</span></li>
+        <li><input type="checkbox" /><span>Equipment pre-use inspections completed (truck, excavator, chain saw, etc.)</span></li>
+        <li><input type="checkbox" /><span>SDS sheets available for any chemicals on-site</span></li>
+        <li><input type="checkbox" /><span>Weather conditions reviewed — work adjusted if needed</span></li>
+        <li><input type="checkbox" /><span>Work site access &amp; egress path identified</span></li>
+        <li><input type="checkbox" /><span>Nearest hospital / urgent care identified: <input type="text" style="border:none;border-bottom:1px solid #aaa;width:220px;" placeholder="Hospital name &amp; address" /></span></li>
+        <li><input type="checkbox" /><span>Any crew members have physical limitations or medical conditions to be aware of today? If yes, noted in comments.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Crew Members -->
+  <section>
+    <h2>👷 Crew Members Present</h2>
+    <div class="body">
+      <table class="crew-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Role / Title</th>
+            <th>Initials (briefing received)</th>
+          </tr>
+        </thead>
+        <tbody id="crewBody">
+          <tr>
+            <td>1</td>
+            <td><input type="text" placeholder="Full name" /></td>
+            <td><input type="text" placeholder="e.g. Lineman, Operator" /></td>
+            <td><input type="text" style="width:80px;" placeholder="Initials" /></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><input type="text" placeholder="Full name" /></td>
+            <td><input type="text" placeholder="Role" /></td>
+            <td><input type="text" style="width:80px;" placeholder="Initials" /></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td><input type="text" placeholder="Full name" /></td>
+            <td><input type="text" placeholder="Role" /></td>
+            <td><input type="text" style="width:80px;" placeholder="Initials" /></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td><input type="text" placeholder="Full name" /></td>
+            <td><input type="text" placeholder="Role" /></td>
+            <td><input type="text" style="width:80px;" placeholder="Initials" /></td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td><input type="text" placeholder="Full name" /></td>
+            <td><input type="text" placeholder="Role" /></td>
+            <td><input type="text" style="width:80px;" placeholder="Initials" /></td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td><input type="text" placeholder="Full name" /></td>
+            <td><input type="text" placeholder="Role" /></td>
+            <td><input type="text" style="width:80px;" placeholder="Initials" /></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Comments -->
+  <section>
+    <h2>📝 Additional Comments / Notes</h2>
+    <div class="body">
+      <textarea class="notes" placeholder="Any additional safety notes, special instructions, or observations…"></textarea>
+    </div>
+  </section>
+
+  <!-- Signatures -->
+  <section>
+    <h2>✍️ Foreman Sign-Off</h2>
+    <div class="body">
+      <div class="sign-grid">
+        <div class="sign-box">
+          <label>Foreman Signature (print name)</label>
+          <input type="text" placeholder="Print full name" />
+          <div class="date-line">Date: <span id="sigDate"></span></div>
+        </div>
+        <div class="sign-box">
+          <label>Supervisor / Approving Authority</label>
+          <input type="text" placeholder="Print full name" />
+          <div class="date-line">Date: <span id="sigDate2"></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <button class="print-btn" onclick="window.print()">🖨️ Print / Save as PDF</button>
+
+</div>
+
+<script>
+  // Auto-fill today's date
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('jobDate').value = today;
+  const fmt = new Date().toLocaleDateString('en-US', {year:'numeric',month:'long',day:'numeric'});
+  document.getElementById('sigDate').textContent = fmt;
+  document.getElementById('sigDate2').textContent = fmt;
+</script>
+</body>
+</html>
